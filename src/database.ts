@@ -13,7 +13,7 @@ const {
 } = process.env;
 
 const database = (ENV === 'test') ? POSTGRES_TEST_DB : POSTGRES_DB;
-console.log('Database used: ' + database);
+console.log('connected to ' + database + ' database');
 
 const client = new Pool({
     host: POSTGRES_HOST,
