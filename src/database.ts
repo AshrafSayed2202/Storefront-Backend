@@ -15,11 +15,11 @@ const {
 const database = (ENV === 'test') ? POSTGRES_TEST_DB : POSTGRES_DB;
 console.log('connected to ' + database + ' database');
 
-const client = new Pool({
+const Client = new Pool({
     host: POSTGRES_HOST,
     database: database,
     user: POSTGRES_USER,
     password: POSTGRES_PASSWORD
 });
 
-export default client;
+export default Client;
