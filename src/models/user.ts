@@ -99,11 +99,13 @@ export class UserStore {
             throw new Error(`Could not run show query on users: ${error}`);
         }
         if (!result?.rows.length) {
-            return null; // No user found for user_name
+            // Wrong user_name
+            return null;
         }
         const user = result.rows[0];
         if (!bcrypt.compareSync(`${password}${this.pepper}`, user.password)) {
-            return null; // No authentication
+            // Wrong password
+            return null; 
         }
         return user;
     }
