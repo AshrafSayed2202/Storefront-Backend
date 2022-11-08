@@ -10,7 +10,7 @@ export type User = {
     password: string;
 }
 
-export class userStore {
+export class UserStore {
     private saltRounds: number = parseInt(process.env.SALT_ROUNDS as unknown as string);
     private pepper: string = process.env.BCRYPT_PASSWORD as unknown as string;
     async index(): Promise<User[]> {
@@ -27,7 +27,6 @@ export class userStore {
     }
     async show(id: string): Promise<User> {
         try {
-            // ``, [id]
             const conn = await Client.connect()
             const sql = `SELECT * FROM users WHERE id=($1)`
             const result:QueryResult = await conn.query(sql, [id])

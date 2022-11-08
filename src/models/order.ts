@@ -8,6 +8,18 @@ export type Order = {
 }
 
 export class OrderStore {
+    async index(): Promise<Order[]>{
+        try{
+            const conn = await Client.connect()
+            const sql = `SELECT * FROM orders`
+            const result: QueryResult = await conn.query(sql)
+            conn.release()
+            return result.rows;
+        }
+        catch(error){
+            throw new Error(`Could not run index query on orders: ${error}`)
+        }
+    }
     async show(id: string): Promise<Order[]> {
         try {
             const conn = await Client.connect()
@@ -43,6 +55,29 @@ export class OrderStore {
         }
         catch (error) {
             throw new Error(`Could not run edit query on orders: ${error}`);
+        }
+    }
+    async delete(id: string): Promise<Order> {
+        try {
+            const conn = await Client.connect()
+            const sql = `DELETE FROM orders WHERE id=($1)`
+            const result: QueryResult = await conn.query(sql, [id])
+            conn.release()
+            return result.rows[0];
+        }
+        catch (error) {
+            throw new Error(`Could not run delete query on orders for id ${id}: ${error}`);
+        }
+    }
+    async deleteAll(): Promise<void> {
+        try {
+            const conn = await Client.connect()
+            const sql = `DELETE FROM orders`
+            await conn.query(sql)
+            conn.release()
+        }
+        catch (error) {
+            throw new Error(`Could not run deleteAll query on orders: ${error}`);
         }
     }
 }
