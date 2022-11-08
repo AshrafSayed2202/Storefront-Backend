@@ -24,7 +24,7 @@ routes.get(
     <h3>here is the routes you need</p>
     <dl>
         <dt>Users routes</dt>
-        <dd>Create: [post]<a href="http://localhost:3000/api/users"> http://localhost:3000/api/users </a>Parameters are user_name , first_name , last_name and password , you will reciver JWT save it for later</dd>
+        <dd>Create: [post]<a href="http://localhost:3000/api/users"> http://localhost:3000/api/users </a>Parameters are user_name , first_name , last_name and password , you will recive JWT save it for later</dd>
         <dd>Index: [get]<a href="http://localhost:3000/api/users"> http://localhost:3000/api/users </a></dd>
         <dd>Show: [get]<a href="http://localhost:3000/api/users/:id"> http://localhost:3000/api/users/:id </a></dd>
         <dd>Edit: [put]<a href="http://localhost:3000/api/users/:id"> http://localhost:3000/api/users/:id </a>Parameters are user_name , first_name , last_name and password</dd>
