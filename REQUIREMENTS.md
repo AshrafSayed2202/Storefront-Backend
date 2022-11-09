@@ -94,7 +94,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Current Orders by user (args: user id) [token required] ([get] /orders/:id)
 
 ### Database schema
-- users(id SERIAL PRIMARY KEY, user_name VARCHAR(50), first_name VARCHAR(50), last_name VARCHAR(50), password VARCHAR(50));
-- products (id SERIAL PRIMARY KEY, name VARCHAR(50), price INTEGER, category VARCHAR(255))
+- users(id SERIAL PRIMARY KEY, user_name VARCHAR(200), first_name VARCHAR(200), last_name VARCHAR(200), password VARCHAR(400))
+- CREATE TABLE products(id SERIAL PRIMARY KEY, name VARCHAR(200), price INTEGER, category VARCHAR(400))
 - orders (id SERIAL PRIMARY KEY, user_id BIGINT REFERENCES users(id), status VARCHAR(10))
-- order_products (id SERIAL PRIMARY KEY, order_id BIGINT REFERENCES orders(id), product_id BIGINT REFERENCES products(id), quantity INTEGER);
+- order_products (id SERIAL PRIMARY KEY, order_id BIGINT REFERENCES orders(id), product_id BIGINT REFERENCES products(id), quantity INTEGER)

@@ -6,11 +6,13 @@
 PORT=3000
 POSTGRES_HOST=127.0.0.1
 POSTGRES_DB=store
+POSTGRES_TEST_DB=store_test
 POSTGRES_USER=test_user
 POSTGRES_PASSWORD=test_user
 SALT_ROUNDS=10
 BCRYPT_PASSWORD=junglediff
 TOKEN_SECRET=irelia
+#ENV=test
 ```
 ## SECOND 
 ### Setting up postgresql database
@@ -19,25 +21,24 @@ TOKEN_SECRET=irelia
 - In psql run the following to create a yser
     - `CREATE USER test_user WITH PASSWORD 'test_user';`
 - In psql run the following to create the dev and test database
-    - `CREATE DATABASE store`
-    - `CREATE DATABASE store_test`
+    - `CREATE DATABASE store WITH OWNER test_user;`
+    - `CREATE DATABASE store_test WITH OWNER test_user;`
 - Connect to the database and grant all privileges
     - Grant for dev database
-        - `\c store`
+        - `\c store test_user` then enter the password 'test_user'
         - `GRANT ALL PRIVILEGES ON DATABASE store TO test_user;`
     - Grant for test database
-        - `\c store_test`
+        - `\c store_test test_user` then enter the password 'test_user'
         - `GRANT ALL PRIVILEGES ON DATABASE store_test TO test_user;`
 ### The database will run on port `5432`. You can access the server on localhost on port `3000`
 ## THIRD
 ### install the modules in package.json
 
-- Run `npm run install` to install all
+- Run `npm run install` to install all dependencies and devDependencies
 
 ## FORTH
 ### Build the server
 - for migration use `npm run db-up`
-- for typescript complie use `npm run tsc`
 - for testing use `npm run test`
 - you can also `use npm run watch` for watching typescript files
 

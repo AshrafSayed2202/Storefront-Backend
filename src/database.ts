@@ -1,6 +1,5 @@
 import dotenv from 'dotenv';
 import { Pool } from 'pg';
-
 // Use configuration from .env
 dotenv.config();
 const {
@@ -12,7 +11,7 @@ const {
     ENV,
 } = process.env;
 
-const database = (ENV === 'test') ? POSTGRES_TEST_DB : POSTGRES_DB;
+let database = (ENV === 'test') ? POSTGRES_TEST_DB : POSTGRES_DB;
 console.log('connected to ' + database + ' database');
 
 const Client = new Pool({

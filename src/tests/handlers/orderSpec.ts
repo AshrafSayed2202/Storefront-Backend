@@ -29,7 +29,7 @@ describe('Test responses from order endpoints', () => {
         expect(user.id).toEqual(jasmine.any(Number));
         expect(user.password).toEqual(jasmine.any(String));
     });
-    it('posts to /api/orders with user_id and status="new" (valid params) and creates order', async () => {
+    it('posts to /api/orders with user_id and status="new" and creates order', async () => {
         const response = await request
             .post('/api/orders')
             .send({
