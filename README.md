@@ -15,10 +15,20 @@ TOKEN_SECRET=irelia
 ## SECOND 
 ### Setting up postgresql database
 
-    - create database named store
-    - create user named test_user with password test_user also
-    - give test_user all access to store database
-
+- connect to the default postgres databage as the server's root user `psgl -U postgres`
+- In psql run the following to create a yser
+    - `CREATE USER test_user WITH PASSWORD 'test_user';`
+- In psql run the following to create the dev and test database
+    - `CREATE DATABASE store`
+    - `CREATE DATABASE store_test`
+- Connect to the database and grant all privileges
+    - Grant for dev database
+        - `\c store`
+        - `GRANT ALL PRIVILEGES ON DATABASE store TO test_user;`
+    - Grant for test database
+        - `\c store_test`
+        - `GRANT ALL PRIVILEGES ON DATABASE store_test TO test_user;`
+### The database will run on port `5432`. You can access the server on localhost on port `3000`
 ## THIRD
 ### install the modules in package.json
 
