@@ -94,7 +94,7 @@ describe('Tests the User Model', () => {
             expect(result.last_name).toEqual('Sayed');
         }
     });
-    it('rejects the user with the authenticate method (invalid params)', async () => {
+    it('rejects the user with the authenticate method', async () => {
         const result = await store.authenticate('Bob', 'LeelooDallasMultipass');
         expect(result).toBeNull();
     });

@@ -5,7 +5,7 @@ import { User } from '../../models/user';
 import app from '../../server';
 
 app.listen(5060, function () {
-    console.log(`starting app on: 5060`)
+    console.log(`product handlers test starts app on port: 5060`)
 })
 const request = supertest(app);
 
@@ -42,7 +42,7 @@ describe('Test responses from product endpoints', () => {
             })
             .set('Authorization', token);
             product1Token = response.body as string;
-            product1 = jwt.decode(product1Token) as Product
+            product1 = jwt.decode(product1Token) as Product;
         expect(product1.name).toEqual('Xbox');
         expect(product1.price).toEqual(650);
         expect(product1.category).toEqual('Console');
@@ -55,7 +55,7 @@ describe('Test responses from product endpoints', () => {
             })
             .set('Authorization', token);
             product2Token = response.body as string;
-            product2 = jwt.decode(product2Token) as Product
+            product2 = jwt.decode(product2Token) as Product;
         expect(product2.name).toEqual('Dell G15');
         expect(product2.price).toEqual(700);
         expect(product2.category).toEqual('Laptops');
@@ -92,18 +92,16 @@ describe('Test responses from product endpoints', () => {
         expect(response.body.price).toEqual(350);
         expect(response.body.category).toEqual('Laptops');
     });
+    // clear
     afterAll(async () => {
         await request
-            .delete('/products')
-            .send({ id: product1.id })
+            .delete(`/api/products/${product1.id}`)
             .set('Authorization', token);
         await request
-            .delete('/products')
-            .send({ id: product2.id })
+            .delete(`/api/products/${product2.id}`)
             .set('Authorization', token);
         await request
-            .delete('/users')
-            .send({ id: user.id })
+            .delete(`/api/users/${user.id}`)
             .set('Authorization', token);
     });
 });

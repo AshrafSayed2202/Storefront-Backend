@@ -4,7 +4,7 @@ import { User } from '../../models/user';
 import app from '../../server';
 
 app.listen(5050, function () {
-    console.log(`starting app on: 5050`)
+    console.log(`user handlers test starts app on port: 5050`)
 })
 const request = supertest(app);
 
@@ -44,9 +44,7 @@ describe('Tests responses from user endpoints', () => {
     });
     afterAll(async () => {
         await request
-            .delete('/users')
-            .send({ id: user.id })
+            .delete(`/api/users/${user.id}`)
             .set('Authorization', token);
-        
     });
 });

@@ -9,6 +9,6 @@ export default function authenticate(req: Request, res: Response, next: NextFunc
         jwt.verify(token, process.env.TOKEN_SECRET as unknown as string);
         next();
     } catch (error) {
-        res.status(401).send();
+        res.status(401).send(`you dont have token for this api`);
     }
 }

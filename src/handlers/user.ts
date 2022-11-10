@@ -24,7 +24,8 @@ export default class UserHandler {
             });
         }
         catch (error) {
-            throw new Error(`Could not handle index: ${error}`);
+            res.status(400)
+            res.json(`Could not handle index: ${error}`)
         }
     }
     async show(req: Request, res: Response): Promise<void> {
@@ -34,7 +35,8 @@ export default class UserHandler {
             });
         }
         catch (error) {
-            throw new Error(`Could not handle show: ${error}`);
+            res.status(400)
+            res.json(`Could not handle show: ${error}`)
         }
     }
     async create(req: Request, res: Response): Promise<void> {
@@ -49,7 +51,8 @@ export default class UserHandler {
             });
         }
         catch (error) {
-            throw new Error(`Could not handle create: ${error}`);
+            res.status(400)
+            res.json(`Could not handle create: ${error}`)
         }
     }
     async edit(req: Request, res: Response): Promise<void> {
@@ -65,7 +68,8 @@ export default class UserHandler {
             });
         }
         catch (error) {
-            throw new Error(`Could not handle edit: ${error}`);
+            res.status(400)
+            res.json(`Could not handle edit: ${error}`)
         }
     }
     async authenticate(req: Request, res: Response): Promise<void> {
@@ -75,7 +79,8 @@ export default class UserHandler {
             });
         }
         catch (error) {
-            throw new Error(`Could not handle authenticate: ${error}`);
+            res.status(400)
+            res.json(`Could not handle authenticate: ${error}`)
         }
     }
     async delete(req: Request, res: Response): Promise<void> {
@@ -85,7 +90,8 @@ export default class UserHandler {
             });
         }
         catch (error) {
-            throw new Error(`Could not handle delete: ${error}`);
+            res.status(400)
+            res.json(`Could not handle delete: ${error}`)
         }
     }
 }

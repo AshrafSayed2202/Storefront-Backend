@@ -5,7 +5,7 @@ import { User } from '../../models/user';
 import app from '../../server';
 
 app.listen(5070, function () {
-    console.log(`starting app on: 5070`)
+    console.log(`order handlers test starts app on port: 5070`)
 })
 const request = supertest(app);
 
@@ -14,7 +14,6 @@ describe('Test responses from order endpoints', () => {
     let token: string;
     let orderToken: string;
     let order: Order;
-    // Set test user
     beforeAll(async () => {
         const response = await request.post('/api/users').send({
             user_name: 'Typhon',
@@ -42,7 +41,7 @@ describe('Test responses from order endpoints', () => {
         expect(parseInt(order.user_id as unknown as string)).toEqual(user.id as number);
         expect(order.status).toEqual('active');
     });
-    it('gets from /api/orders/:user_id (valid user) the order of the user', async () => {
+    it('gets from /api/orders/:user_id the order of the user', async () => {
         const response = await request
             .get(`/api/orders/${user.id}`)
             .set('Authorization', token);
@@ -57,14 +56,24 @@ describe('Test responses from order endpoints', () => {
         expect(parseInt(response.body[0].user_id as unknown as string)).toEqual(user.id as number);
         expect(response.body[0].status).toEqual('active');
     });
+    it('puts to /api/orders to change parameter', async () => {
+        const response = await request
+            .put(`/api/orders/${order.id}`)
+            .set('Authorization', token)
+            .send({
+                user_id: user.id,
+                status: 'completed'
+            });
+        expect(parseInt(response.body.user_id as unknown as string)).toEqual(user.id as number);
+        expect(response.body.status).toEqual('completed');
+    });
+    // clear
     afterAll(async () => {
         await request
-            .delete('/orders')
-            .send({ id: order.id })
+            .delete(`/api/orders/${order.id}`)
             .set('Authorization', token);
         await request
-            .delete('/users')
-            .send({ id: user.id })
+            .delete(`/api/users/${user.id}`)
             .set('Authorization', token);
     });
 });
