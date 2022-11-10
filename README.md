@@ -40,6 +40,7 @@ TOKEN_SECRET=irelia
 ### Build the server
 - for migration use `npm run db-up`
 - for testing use `npm run test`
+## the built scripts in the package.json file is running on windows powershell to switch between the dev database and te test database so if you are using linux please replace the `remove-hash` script value with `sed -i '/ENV=test/s/^#//g' .env` and the `add-hash` script value with `sed -i '/ENV=test/s/^/#/g' .env`
 - you can also `use npm run watch` for watching typescript files
 
 ### you can use the serever on PORT : 3000
